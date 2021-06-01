@@ -9,9 +9,10 @@ pip install sqlserver
 # code implementation
 ```
 import sqlserver as ss 
-                 (ip,portnumber,databasename,username,password)
+   
+(ip,portnumber,databasename,username,password)  
 db = ss.sqlserver('localhost','1433','CVs','','')
 
-                     (query                   ,columnname)
+(query,columnname)                     
 db.GetRecordsOfColumn('select * from tblUsers','personid')
 ```
