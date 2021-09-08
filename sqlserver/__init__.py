@@ -10,9 +10,9 @@ class sqlserver():
             cursor = conn.cursor()
             cursor.execute(Query)
             cursor.commit()
-            print("Query Executed")
+            return True
         except Exception as e:
-            print(e)
+            return False
     def fields(self, cur):
         results = {}
         column = 0
