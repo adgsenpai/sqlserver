@@ -32,7 +32,7 @@ class sqlserver():
             return values
         except Exception as e:
             print(e)
-    def GetRecordsAsDict(self, SelectQuery, ColumnName):
+    def GetRecordsAsDict(self, SelectQuery):
         try:
             conn = pyodbc.connect(self.connectionstring)
             cursor = conn.cursor()
