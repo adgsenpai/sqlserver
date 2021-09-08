@@ -1,20 +1,21 @@
 # ADGSTUDIOS 2021
 import pyodbc
+
+
 class sqlserver():
-    def __init__(self,connectionstring):
-	    self.connectionstring = connectionstring
-            
+    def __init__(self, connectionstring):
+        self.connectionstring = connectionstring
+
     def ExecuteQuery(self, Query):
         try:
             conn = pyodbc.connect(self.connectionstring)
             cursor = conn.cursor()
             cursor.execute(Query)
             cursor.commit()
-	    print('Query Passed!')
             return True
         except Exception as e:
-	    print(e)
-            return False
+	        print(e)
+	        return False
     def fields(self, cur):
         results = {}
         column = 0
@@ -22,6 +23,7 @@ class sqlserver():
             results[d[0]] = column
             column = column + 1
         return results
+
     def GetRecordsOfColumn(self, SelectQuery, ColumnName):
         try:
             conn = pyodbc.connect(self.connectionstring)
@@ -34,13 +36,14 @@ class sqlserver():
             return values
         except Exception as e:
             print(e)
+
     def GetRecordsAsDict(self, SelectQuery):
         try:
             conn = pyodbc.connect(self.connectionstring)
             cursor = conn.cursor()
             cursor.execute(SelectQuery)
             return {'results':
-            [dict(zip([column[0] for column in cursor.description], row))
-             for row in cursor.fetchall()]}
+                    [dict(zip([column[0] for column in cursor.description], row))
+                     for row in cursor.fetchall()]}
         except Exception as e:
             print(e)
