@@ -1,21 +1,23 @@
 # ADGSTUDIOS 2021
 import pyodbc
-
-
 class sqlserver():
     def __init__(self, connectionstring):
         self.connectionstring = connectionstring
 
     def ExecuteQuery(self, Query):
+        bValid = False
         try:
             conn = pyodbc.connect(self.connectionstring)
             cursor = conn.cursor()
             cursor.execute(Query)
             cursor.commit()
-            return True
+            bValid = True
         except Exception as e:
 	        print(e)
-	        return False
+	        bValid = False
+            
+        return bValid
+        
     def fields(self, cur):
         results = {}
         column = 0
