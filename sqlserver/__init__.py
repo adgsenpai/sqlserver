@@ -1,23 +1,11 @@
 # ADGSTUDIOS 2021
 import pyodbc
-class sqlserver():
+
+
+class adgsqlserver():
     def __init__(self, connectionstring):
         self.connectionstring = connectionstring
 
-    def ExecuteQuery(self, Query):
-        bValid = False
-        try:
-            conn = pyodbc.connect(self.connectionstring)
-            cursor = conn.cursor()
-            cursor.execute(Query)
-            cursor.commit()
-            bValid = True
-        except Exception as e:
-	        print(e)
-	        bValid = False
-            
-        return bValid
-        
     def fields(self, cur):
         results = {}
         column = 0
@@ -36,6 +24,15 @@ class sqlserver():
             for row in cursor:
                 values.append(row[field_map[ColumnName]])
             return values
+        except Exception as e:
+            print(e)
+
+    def ExecuteQuery(self, Query):
+        try:
+            conn = pyodbc.connect(self.connectionstring)
+            cursor = conn.cursor()
+            cursor.execute(Query)
+            cursor.commit()
         except Exception as e:
             print(e)
 
