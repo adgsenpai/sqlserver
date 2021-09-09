@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="sqlserver",
-    version="0.0.10",
+    version="0.0.11",
     author="Ashlin Darius Govindasamy",
     author_email="adgrules@hotmail.com",
     url="https://www.adgstudios.co.za",
