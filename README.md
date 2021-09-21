@@ -10,7 +10,7 @@ pip install sqlserver
 
 ````
 import sqlserver
-db = sqlserver.sqlserver('yourconnectionstring')
+db = sqlserver.adgsqlserver('yourconnectionstring')
 
 db.(whateverfunctions in the modules)
 returns data
