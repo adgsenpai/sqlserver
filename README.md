@@ -17,8 +17,13 @@ pip install sqlserver
 pip install sqlserver
 ````
 
-##### Usage
+#### Example of ConnectionString linux guys
+````
+DRIVER={ODBC Driver 17 for SQL Server};SERVER=SERVERNAME,PORT;DATABASE=DB;UID=USERNAME;PWD=PASSWORD
+````
 
+
+##### Usage
 ````
 import sqlserver
 db = sqlserver.adgsqlserver('yourconnectionstring')
