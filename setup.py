@@ -1,12 +1,17 @@
 from setuptools import setup, find_packages
+from pathlib import Path
+this_directory = Path(__file__).parent
+long_description = (this_directory / "README.md").read_text()
 
 setup(
     name="sqlserver",
-    version="0.0.11",
+    long_description=long_description,
+    long_description_content_type='text/markdown',
+    version="0.0.12",
     author="Ashlin Darius Govindasamy",
-    author_email="adgrules@hotmail.com",
+    author_email="adg@adgstudios.co.za",
     url="https://www.adgstudios.co.za",
-    description="A class used to simplify pyodbc",
+    description="a module that makes queries easier to SQL Server than PYODBC",
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
@@ -14,5 +19,5 @@ setup(
         "Operating System :: OS Independent",
     ],
     license='MIT', 
-    install_requires=["pyodbc"]
+    install_requires=["pyodbc","pandas"]
 )
