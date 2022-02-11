@@ -47,7 +47,7 @@ class adgsqlserver():
         except Exception as e:
             print(e)
 
-        def CreateCSVTable(self,csvfile):
+    def CreateCSVTable(self,csvfile):
             df = pd.read_csv(csvfile)
             tablename = csvfile.split('.')[0]
             payload = ''
