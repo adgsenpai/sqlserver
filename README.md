@@ -32,4 +32,4 @@ db.(whateverfunctions in the modules)
 returns data
 ````
 
-###### Copyright ADGSTUDIOS 2021
+###### Copyright ADGSTUDIOS 2022

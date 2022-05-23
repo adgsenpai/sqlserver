@@ -1,4 +1,4 @@
-# ADGSTUDIOS 2021
+# ADGSTUDIOS 2022
 import pyodbc
 import pandas as pd
 
@@ -31,7 +31,8 @@ class adgsqlserver():
         try:
             conn = pyodbc.connect(self.connectionstring)
             cursor = conn.cursor()
-            cursor.execute(Query)
+            # fixed quotation mark error for data structures such as dict, list etc no longer need to use .replace('\'','\"') in code!
+            cursor.execute(Query.replace('\'','\"'))
             cursor.commit()
         except Exception as e:
             print(e)
