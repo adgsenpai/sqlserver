@@ -31,8 +31,7 @@ class adgsqlserver():
         try:
             conn = pyodbc.connect(self.connectionstring)
             cursor = conn.cursor()
-            # fixed quotation mark error for data structures such as dict, list etc no longer need to use .replace('\'','\"') in code!
-            cursor.execute(Query.replace('\'','\"'))
+            cursor.execute(Query)
             cursor.commit()
         except Exception as e:
             print(e)
