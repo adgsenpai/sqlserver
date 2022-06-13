@@ -26,6 +26,7 @@ class adgsqlserver():
             return values
         except Exception as e:
             print(e)
+            return False
 
     def ExecuteQuery(self, Query):
         try:
@@ -33,8 +34,11 @@ class adgsqlserver():
             cursor = conn.cursor()
             cursor.execute(Query)
             cursor.commit()
+            return True
         except Exception as e:
             print(e)
+            return False
+            
 
     def GetRecordsAsDict(self, SelectQuery):
         try:
@@ -46,6 +50,7 @@ class adgsqlserver():
                      for row in cursor.fetchall()]}
         except Exception as e:
             print(e)
+            return False
 
     def CreateCSVTable(self,csvfile):
             df = pd.read_csv(csvfile)
@@ -80,7 +85,8 @@ class adgsqlserver():
                 cursor.commit()
                 return 'Table Created'
             except Exception as e:
-                return e
+                print(e)
+                return False
         
     def InsertCSVData(self,csvfile):
         df = pd.read_csv(csvfile)
