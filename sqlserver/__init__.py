@@ -102,7 +102,7 @@ class adgsqlserver():
 
             if index % 1000 == 0:
                 query = f'''
-                INSERT INTO {tablename}
+                INSERT INTO [{tablename}]
                 VALUES
                 {payload[:-2]}
                 '''
@@ -118,7 +118,7 @@ class adgsqlserver():
 
         if len(payload) > 0:
                 query = f'''
-                INSERT INTO {tablename}
+                INSERT INTO [{tablename}]
                 VALUES
                 {payload[:-2]}
                 '''
