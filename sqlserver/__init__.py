@@ -1,6 +1,7 @@
 # ADGSTUDIOS 2022
 import pyodbc
 import pandas as pd
+from pathlib import Path
 
 class adgsqlserver():
     def __init__(self, connectionstring):
@@ -13,6 +14,9 @@ class adgsqlserver():
             results[d[0]] = column
             column = column + 1
         return results
+
+    def ReturnDrivers(self):
+        return pyodbc.drivers()
 
     def GetRecordsOfColumn(self, SelectQuery, ColumnName):
         try:
@@ -129,3 +133,10 @@ class adgsqlserver():
                     cursor.commit()
                 except Exception as e:
                     print(e)
+
+        def InsertXMLSQLTable(self,path):
+            df = pd.read_xml(path)
+            datapath = Path(path)
+            df.to_csv(datapath.name+'.csv')
+            self.CreateCSVTable(datapath.name+'.csv')
+            self.InsertCSVData(datapath.name+'.csv')

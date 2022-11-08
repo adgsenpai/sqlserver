@@ -7,7 +7,7 @@ setup(
     name="sqlserver",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version="0.0.15",
+    version="0.0.16",
     author="Ashlin Darius Govindasamy",
     author_email="adg@adgstudios.co.za",
     url="https://www.adgstudios.co.za",
@@ -19,5 +19,5 @@ setup(
         "Operating System :: OS Independent",
     ],
     license='MIT', 
-    install_requires=["pyodbc","pandas"]
+    install_requires=["pyodbc","pandas","lxml"]
 )
