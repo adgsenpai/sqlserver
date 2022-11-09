@@ -2,6 +2,7 @@
 import pyodbc
 import pandas as pd
 from pathlib import Path
+import pathlib
 
 class adgsqlserver():
     def __init__(self, connectionstring):
