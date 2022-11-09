@@ -58,7 +58,7 @@ class adgsqlserver():
 
     def CreateCSVTable(self,csvfile):
             df = pd.read_csv(csvfile)
-            tablename = csvfile.split('.')[0]
+            tablename = pathlib.Path(csvfile).stem
             payload = ''
             columns = list(df.keys())
             for i,column in enumerate(columns):
@@ -94,7 +94,7 @@ class adgsqlserver():
         
     def InsertCSVData(self,csvfile):
         df = pd.read_csv(csvfile)
-        tablename = csvfile.split('.')[0]
+        tablename = pathlib.Path(csvfile).stem
         columns = list(df.keys())
         payload = ''
         for index, row in df.iterrows():
