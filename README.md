@@ -5,7 +5,10 @@
 1. Install a driver for your linux machine!
 2. I recommend `FreeTDS` 
 
-### Installing `FreeTDS`
+### Installing `FreeTDS` from bash script
+You may look at my script @ https://github.com/adgsenpai/InstallFreeTDS
+
+### Installing `FreeTDS` Manually
 
 1. Install pre-requisite packages
 ```
