@@ -1,5 +1,9 @@
 # SQLSERVER PYODBC Module 
 
+### Academic Papers Regarding this Module
+
+- [The Mass Insertion of SQL Server Records Algorithm](https://zenodo.org/record/7306173#.Y29OmnZBxD9)
+
 ## Installation for linux guys
 
 1. Install a driver for your linux machine!
