@@ -7,7 +7,7 @@ setup(
     name="sqlserver",
     long_description=long_description,
     long_description_content_type='text/markdown',
-    version="0.0.16.2",
+    version="0.0.17.0",
     author="Ashlin Darius Govindasamy",
     author_email="adg@adgstudios.co.za",
     url="https://www.adgstudios.co.za",

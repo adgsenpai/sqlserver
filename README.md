@@ -148,4 +148,91 @@ xmlfilepath = 'C:/somexml.xml'
 db.InsertXMLSQLTable(xmlfilepath)
 ```
 
-###### Copyright ADGSTUDIOS 2022
+#### Generate Insert Script
+`parms`: InsertScript(df:DataFrame,tblName:str,isNEWID:bool=False)
+
+```
+df = pd.DataFrame({'name':['test','test2'],'surname':['testor','testor2'],'phonenumber':['01234567810','01234567810']})
+db.InsertScript(df,'somefile')
+```
+
+`stdout`
+```
+'''
+INSERT INTO [somefile]
+VALUES
+('test','testor','01234567810'),
+('test2','testor2','01234567810')
+'''
+```
+
+#### Generate Update Script
+`parms`: UpdateScript(dataDict:dict,whereCondition:str,tblName:str)
+
+```
+dataDict = {'name':'test','surname':'testor','phonenumber':'01234567810'}
+whereCondition = "name = 'test'"
+db.UpdateScript(dataDict,whereCondition,'somefile')
+```
+
+`stdout`
+```
+'''
+UPDATE [dbo].[somefile]
+SET
+[name] = 'test',
+[surname] = 'testor',
+[phonenumber] = '01234567810'
+WHERE
+name = 'test'
+'''
+```
+
+#### Generate Delete Script
+`parms`: DeleteScript(whereCondition:str,tblName:str)
+
+```
+whereCondition = "name = 'test'"
+db.DeleteScript(whereCondition,'somefile')
+```
+
+`stdout`
+```
+'''
+DELETE FROM [dbo].[somefile]
+WHERE
+name = 'test'
+'''
+```
+
+#### Generate Select Script
+`parms`: SelectScript(whereCondition:str,tblName:str)
+
+```
+whereCondition = "name = 'test'"
+db.SelectScript(whereCondition,'somefile')
+```
+
+`stdout`
+```
+'''
+SELECT * FROM [dbo].[somefile]
+WHERE
+name = 'test'
+'''
+```
+
+#### Execute Script
+`parms`: ExecuteScript(query:str)
+
+```
+query = "SELECT 'Connection Passed' AS Result"
+db.ExecuteScript(query)
+```
+
+`stdout`
+```
+{'results': [{'Result': 'Connection Passed'}]}
+```
+
+###### Copyright ADGSTUDIOS 2023

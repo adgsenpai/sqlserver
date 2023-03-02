@@ -7,7 +7,7 @@ import pathlib
 class adgsqlserver():
     def __init__(self, connectionstring):
         self.connectionstring = connectionstring
-
+        
     def fields(self, cur):
         results = {}
         column = 0
@@ -135,9 +135,106 @@ class adgsqlserver():
                 except Exception as e:
                     print(e)
 
-        def InsertXMLSQLTable(self,path):
+    def InsertXMLSQLTable(self,path):
             df = pd.read_xml(path)
             datapath = Path(path)
             df.to_csv(datapath.name+'.csv')
             self.CreateCSVTable(datapath.name+'.csv')
             self.InsertCSVData(datapath.name+'.csv')
+
+
+    def CreateTableScript(df,tblName):
+        # create the table creation script
+        # df = dataframe
+        # tblName = table name
+        # returns a string
+        columns = list(df.keys())
+        payload = ''
+        for i,column in enumerate(columns):
+            payload += '['+column+']'+' '+'VARCHAR(max)' + ','
+        payload = payload[:-1]
+        query = f'''
+        IF OBJECT_ID('dbo.{tblName}', 'U') IS NOT NULL
+        BEGIN
+            DROP TABLE [dbo].[{tblName}]
+        END
+        CREATE TABLE [dbo].[{tblName}]
+        (
+            {payload}
+        );
+        '''
+        return query
+
+    def InsertScript(df,tblName,isNEWID=False):
+        # create the insert/update script
+        # df = dataframe
+        # tblName = table name
+        # isNEWID = if true, then the ID column will be a NEWID()
+        # returns a string
+        columns = list(df.keys())
+        payload = ''
+        for index, row in df.iterrows():
+            record = '('
+            for i,column in enumerate(columns):
+                if isNEWID and column == 'ID':
+                    record += 'NEWID()' + ','
+                else:
+                    record += "'"+str(row[column]).replace("'"," ")+"'" + ','
+            record = record[:-1]
+            payload += record+'),'+'\n'
+
+            if index % 1000 == 0:
+                query = f'''
+                INSERT INTO [{tblName}]
+                VALUES
+                {payload[:-2]}
+                '''
+                payload = ''
+
+        if len(payload) > 0:
+                query = f'''
+                INSERT INTO [{tblName}]
+                VALUES
+                {payload[:-2]}
+                '''
+        return query
+
+    def UpdateScript(dataDict,whereCondition,tblName):
+        # create the update script
+        # dataDict = dictionary of column name and value
+        # whereCondition = where condition
+        # returns a string
+        payload = ''
+        for key in dataDict.keys():
+            payload += '['+key+']'+' = '+"'"+str(dataDict[key]).replace("'"," ")+"'" + ','
+        payload = payload[:-1]
+        query = f'''
+        UPDATE [dbo].[{tblName}]
+        SET
+        {payload}
+        WHERE
+        {whereCondition}
+        '''
+        return query 
+
+    def DeleteScript(whereCondition,tblName):
+        # create the delete script
+        # whereCondition = where condition
+        # returns a string
+        query = f'''
+        DELETE FROM [dbo].[{tblName}]
+        WHERE
+        {whereCondition}
+        '''
+        return query
+
+    def SelectScript(whereCondition,tblName):
+        # create the select script
+        # whereCondition = where condition
+        # returns a string
+        query = f'''
+        SELECT * FROM [dbo].[{tblName}]
+        WHERE
+        {whereCondition}
+        '''
+        return query
