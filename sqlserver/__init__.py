@@ -143,7 +143,7 @@ class adgsqlserver():
             self.InsertCSVData(datapath.name+'.csv')
 
 
-    def CreateTableScript(df,tblName):
+    def CreateTableScript(self,df,tblName):
         # create the table creation script
         # df = dataframe
         # tblName = table name
@@ -165,7 +165,7 @@ class adgsqlserver():
         '''
         return query
 
-    def InsertScript(df,tblName,isNEWID=False):
+    def InsertScript(self,df,tblName,isNEWID=False):
         # create the insert/update script
         # df = dataframe
         # tblName = table name
@@ -199,7 +199,7 @@ class adgsqlserver():
                 '''
         return query
 
-    def UpdateScript(dataDict,whereCondition,tblName):
+    def UpdateScript(self,dataDict,whereCondition,tblName):
         # create the update script
         # dataDict = dictionary of column name and value
         # whereCondition = where condition
@@ -217,7 +217,7 @@ class adgsqlserver():
         '''
         return query 
 
-    def DeleteScript(whereCondition,tblName):
+    def DeleteScript(self,whereCondition,tblName):
         # create the delete script
         # whereCondition = where condition
         # returns a string
@@ -228,7 +228,7 @@ class adgsqlserver():
         '''
         return query
 
-    def SelectScript(whereCondition,tblName):
+    def SelectScript(self,whereCondition,tblName):
         # create the select script
         # whereCondition = where condition
         # returns a string
